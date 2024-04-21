@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { envValues } from './configurations/app.configuration';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -10,8 +9,9 @@ import { envValues } from './configurations/app.configuration';
       isGlobal: true,
       load: [envValues],
     }),
+    TaskModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
