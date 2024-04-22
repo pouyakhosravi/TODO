@@ -6,9 +6,9 @@ export enum TaskStatus {
 }
 
 export enum Priority {
-  IMMEDIATE = 'IMMEDIATE',
-  URGENT = 'URGENT',
-  VERY_URGENT = 'VERY_URGENT',
+  LOW = 'LOW',
+  MEDIUM = 'MEDIUM',
+  HIG = 'HIG',
 }
 // ======= Types =======
 // ======= REGEX =======
