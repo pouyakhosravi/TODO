@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](///compare/v0.1.4...v0.2.5) (2024-04-22)
+
+
+### Features
+
+* :sparkles: Add Label,Category,List Modules 5097650
+
 ### [0.1.4](///compare/v0.0.3...v0.1.4) (2024-04-22)
 
 
