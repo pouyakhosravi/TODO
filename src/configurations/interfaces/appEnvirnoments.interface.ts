@@ -14,4 +14,6 @@ interface MongoDBValues {
 export interface EnvironmentValues {
   app: AppValues;
   mongo: MongoDBValues;
+  jwtSecretKey: string;
+  salt: string;
 }

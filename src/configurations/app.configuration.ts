@@ -12,4 +12,6 @@ export const envValues = (): EnvironmentValues => ({
     port: process.env.MONGODB_PORT || '27017',
     userName: process.env.MONGODB_USER_NAME || 'user',
   },
+  jwtSecretKey: process.env.JWT_SECRET_KEY || 'test',
+  salt: process.env.SALT || 'part_ai$123',
 });
