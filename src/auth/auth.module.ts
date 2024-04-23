@@ -16,6 +16,7 @@ import { UserController } from 'src/user/user.controller';
     UserModule,
     PassportModule,
     JwtModule.register({
+      global: true,
       secret: process.env.JWT_SECRET_KEY,
       signOptions: { expiresIn: '90d' },
     }),

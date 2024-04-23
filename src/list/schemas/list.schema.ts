@@ -1,12 +1,18 @@
 // user.schema.ts
 import * as mongoose from 'mongoose';
 
-export const ListSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
-});
+export const ListSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
+    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+  },
+  {
+    timestamps: true,
+    autoIndex: true,
+  },
+);
 
 export interface List extends mongoose.Document {
   name: string;

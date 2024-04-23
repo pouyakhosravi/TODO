@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { LoginDTO } from './dto/login.dto';
 import { ConfigService } from '@nestjs/config';
+import { User } from 'src/user/interfaces/user.interface';
 
 @Injectable()
 export class AuthService {
@@ -34,7 +35,9 @@ export class AuthService {
   }
 
   async login(loginDTO: LoginDTO) {
-    const user = await this.usersService.findByEmail(loginDTO.email);
+    const user: User | null = await this.usersService.findByEmail(
+      loginDTO.email,
+    );
     if (!user) {
       throw new NotFoundException('User not found.');
     }
@@ -51,8 +54,8 @@ export class AuthService {
 
     if (user.password && user.email && passwordValid) {
       const payload = {
+        userId: user._id,
         email: loginDTO.email,
-        password: loginDTO.password,
       };
 
       return {

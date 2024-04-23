@@ -1,6 +1,7 @@
+// user.schema.ts
 import * as mongoose from 'mongoose';
 
-export const CategorySchema = new mongoose.Schema(
+export const LabelSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -12,7 +13,7 @@ export const CategorySchema = new mongoose.Schema(
   },
 );
 
-export interface Category extends mongoose.Document {
+export interface Label extends mongoose.Document {
   name: string;
   user: mongoose.Schema.Types.ObjectId;
   tasks: [mongoose.Schema.Types.ObjectId];

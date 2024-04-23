@@ -6,7 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ListModule } from './list/list.module';
 import { CategoryModule } from './category/category.module';
-import { LableModule } from './lable/lable.module';
+import { LabelModule } from './label/label.module';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { LableModule } from './lable/lable.module';
     AuthModule,
     ListModule,
     CategoryModule,
-    LableModule,
+    LabelModule,
   ],
   controllers: [],
   providers: [],

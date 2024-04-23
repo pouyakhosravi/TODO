@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import { Role } from '../constants/user.constant';
 
 export const UserSchema = new mongoose.Schema(
   {
@@ -10,6 +11,11 @@ export const UserSchema = new mongoose.Schema(
     lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
     categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
     labels: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Label' }],
+    roles: {
+      type: [String],
+      enum: Role,
+      default: ['USER'],
+    },
   },
   {
     timestamps: true,
@@ -26,4 +32,5 @@ export interface User extends mongoose.Document {
   lists: [mongoose.Schema.Types.ObjectId];
   categories: [mongoose.Schema.Types.ObjectId];
   labels: [mongoose.Schema.Types.ObjectId];
+  roles: [string];
 }

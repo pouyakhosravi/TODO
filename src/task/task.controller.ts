@@ -9,11 +9,13 @@ import {
   UsePipes,
   ValidationPipe,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
+import { RolesGuard } from 'src/auth/guards/role.guard';
 
 @Controller('task')
 export class TaskController {
@@ -26,6 +28,7 @@ export class TaskController {
   }
 
   @Get()
+  // @UseGuards(RolesGuard)
   findAll(): Promise<Array<Task>> {
     return this.taskService.findAll();
   }
