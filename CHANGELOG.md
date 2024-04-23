@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.6](///compare/v0.2.5...v0.3.6) (2024-04-23)
+
+
+### Features
+
+* :sparkles: Authorization and some CRUD de612da
+
 ### [0.2.5](///compare/v0.1.4...v0.2.5) (2024-04-22)
 
 
