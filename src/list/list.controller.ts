@@ -10,7 +10,9 @@ import {
 import { ListService } from './list.service';
 import { CreateListDto } from './dto/create-list.dto';
 import { UpdateListDto } from './dto/update-list.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('List Routes')
 @Controller('list')
 export class ListController {
   constructor(private readonly listService: ListService) {}

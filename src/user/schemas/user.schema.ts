@@ -15,6 +15,7 @@ export const UserSchema = new mongoose.Schema(
       type: [String],
       enum: Role,
       default: ['USER'],
+      required: true,
     },
   },
   {
@@ -22,15 +23,3 @@ export const UserSchema = new mongoose.Schema(
     autoIndex: true,
   },
 );
-
-export interface User extends mongoose.Document {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  tasks: [mongoose.Schema.Types.ObjectId];
-  lists: [mongoose.Schema.Types.ObjectId];
-  categories: [mongoose.Schema.Types.ObjectId];
-  labels: [mongoose.Schema.Types.ObjectId];
-  roles: [string];
-}
