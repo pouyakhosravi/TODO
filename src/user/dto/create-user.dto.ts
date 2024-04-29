@@ -64,7 +64,6 @@ export class CreateUserDto {
     format: 'email',
     example: 'john.doe@example.com',
   })
-  @ApiProperty()
   @IsEmail({}, { message: 'Please provide a valid email address' })
   @Validate(IsValidEmailFormat, {
     message: 'Email address must follow a valid structure',

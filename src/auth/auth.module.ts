@@ -9,11 +9,16 @@ import { UserService } from 'src/user/user.service';
 import { userProviders } from 'src/user/user.provider';
 import { DatabaseModule } from 'src/configurations/databases/mongoDB/mongo.module';
 import { UserController } from 'src/user/user.controller';
+import { TaskService } from 'src/task/task.service';
+import { TaskController } from 'src/task/task.controller';
+import { TaskModule } from 'src/task/task.module';
+import { taskProviders } from 'src/task/task.provider';
 
 @Module({
   imports: [
     DatabaseModule,
     UserModule,
+    TaskModule,
     PassportModule,
     JwtModule.register({
       global: true,
@@ -21,7 +26,14 @@ import { UserController } from 'src/user/user.controller';
       signOptions: { expiresIn: '90d' },
     }),
   ],
-  providers: [AuthService, UserService, LocalStrategy, ...userProviders],
-  controllers: [AuthController, UserController],
+  providers: [
+    AuthService,
+    UserService,
+    TaskService,
+    LocalStrategy,
+    ...userProviders,
+    ...taskProviders,
+  ],
+  controllers: [AuthController, UserController, TaskController],
 })
 export class AuthModule {}

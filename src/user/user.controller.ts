@@ -18,7 +18,7 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RolesGuard } from 'src/auth/guards/role.guard';
 import { Roles } from 'src/auth/decorators/role.decorator';
 import { Role } from './constants/user.constant';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 /**
  * Controller responsible for handling user-related operations.
@@ -39,6 +39,10 @@ export class UserController {
    * @returns {Promise<User>} Promise resolving to the created user.
    */
   @Post('/signup')
+  @ApiOperation({
+    summary: 'Crate and signup',
+    description: 'This is Signup rout for create a new user and register',
+  })
   @UsePipes(ValidationPipe)
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.create(createUserDto);

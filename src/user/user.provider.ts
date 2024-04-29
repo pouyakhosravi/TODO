@@ -8,19 +8,19 @@ import { UserSchema } from './schemas/user.schema';
 export const userProviders = [
   {
     /**
-     * The token used for injecting the User model.
+     * The unique token used for injecting the User model.
      */
     provide: 'USER_MODEL',
 
     /**
      * Factory function to create the User model using Mongoose.
      * @param mongoose The Mongoose instance for creating the model.
-     * @returns The created User model.
+     * @returns The User model.
      */
     useFactory: (mongoose: Mongoose) => mongoose.model('User', UserSchema),
 
     /**
-     * Dependencies to be injected into the factory function.
+     * Dependencies to be injected.
      */
     inject: ['MONGO_DB_CONNECTION'],
   },
