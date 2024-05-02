@@ -39,7 +39,7 @@ export class TaskService {
    * @returns A promise that resolves to the retrieved task, or null if not found.
    */
   async findOne(id: string): Promise<Task | null> {
-    return await this.taskModel.findOne({ taskID: id });
+    return await this.taskModel.findOne({ _id: id });
   }
 
   /**
@@ -49,7 +49,7 @@ export class TaskService {
    * @returns A promise that resolves to the updated task, or null if not found.
    */
   async update(id: string, updateTaskDto: UpdateTaskDto): Promise<Task | null> {
-    return await this.taskModel.findOneAndUpdate({ taskID: id }, updateTaskDto);
+    return await this.taskModel.findOneAndUpdate({ _id: id }, updateTaskDto);
   }
 
   /**
@@ -58,7 +58,7 @@ export class TaskService {
    * @returns A promise that resolves to true if the task was successfully deleted, otherwise false.
    */
   async delete(id: string): Promise<boolean> {
-    const task = await this.taskModel.deleteOne({ taskID: id });
+    const task = await this.taskModel.deleteOne({ _id: id });
     return task ? true : false;
   }
 }
