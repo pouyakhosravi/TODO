@@ -7,8 +7,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
 import { User } from './interfaces/user.interface';
-import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
+import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 /**
  * Service responsible for managing user-related operations.
@@ -19,11 +19,11 @@ import * as bcrypt from 'bcrypt';
 export class UserService {
   /**
    * Constructs a new instance of UserService.
-   * @param configService ConfigService instance for retrieving configuration values.
+   * @param config ConfigService instance for retrieving configuration values.
    * @param userModel Mongoose Model for User entity.
    */
   constructor(
-    private readonly configService: ConfigService,
+    private readonly config: GetEnvValuesService,
     @Inject('USER_MODEL') private readonly userModel: Model<User>,
   ) {}
 
@@ -35,7 +35,7 @@ export class UserService {
    * @throws InternalServerErrorException if an error occurs during user creation.
    */
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const salt = this.configService.get<string | number>('salt');
+    const salt = this.config.salt;
     if (!salt) {
       throw new InternalServerErrorException('Salt configuration not found.');
     }

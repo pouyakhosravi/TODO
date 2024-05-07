@@ -5,6 +5,7 @@ import { DatabaseModule } from 'src/configurations/databases/mongoDB/mongo.modul
 import { taskProviders } from './task.provider';
 import { UserService } from 'src/user/user.service';
 import { userProviders } from 'src/user/user.provider';
+import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 /**
  * Module for managing tasks within the application.
@@ -14,6 +15,7 @@ import { userProviders } from 'src/user/user.provider';
   imports: [DatabaseModule],
   controllers: [TaskController],
   providers: [
+    GetEnvValuesService,
     /**
      * Service responsible for task-related operations and business logic.
      */

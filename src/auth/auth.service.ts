@@ -8,13 +8,13 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { LoginDTO } from './dto/login.dto';
-import { ConfigService } from '@nestjs/config';
 import { User } from 'src/user/interfaces/user.interface';
+import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly configService: ConfigService,
+    private readonly config: GetEnvValuesService,
     private readonly usersService: UserService,
     private jwtService: JwtService,
   ) {}
@@ -42,7 +42,9 @@ export class AuthService {
       throw new NotFoundException('User not found.');
     }
 
-    const salt = this.configService.get<string | number>('salt');
+    const salt = this.config.salt;
+    console.log(salt);
+
     if (!salt) {
       throw new InternalServerErrorException();
     }
@@ -60,7 +62,7 @@ export class AuthService {
 
       return {
         access_token: this.jwtService.sign(payload, {
-          secret: this.configService.get<string>('jwtSecretKey'),
+          secret: this.config.jwtSecretKey,
         }),
       };
     } else {

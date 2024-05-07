@@ -8,17 +8,17 @@ import {
 import { Reflector } from '@nestjs/core';
 import { Role } from 'src/user/constants/user.constant';
 import { ROLES_KEY } from '../decorators/role.decorator';
-import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { UserService } from 'src/user/user.service';
 import { User } from 'src/user/interfaces/user.interface';
+import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
-    private configService: ConfigService,
+    private config: GetEnvValuesService,
     private jwtService: JwtService,
     private readonly userService: UserService,
   ) {}
@@ -40,7 +40,7 @@ export class RolesGuard implements CanActivate {
 
     try {
       const payload = await this.jwtService.verifyAsync(token, {
-        secret: this.configService.get<string>('jwtSecretKey'),
+        secret: this.config.jwtSecretKey,
       });
       request['user'] = payload;
     } catch {

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { envValues } from './configurations/app.configuration';
+import { environmentsValuesOptions } from './configurations/getEnvValues.service';
 import { TaskModule } from './task/task.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -10,10 +10,7 @@ import { LabelModule } from './label/label.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [envValues],
-    }),
+    ConfigModule.forRoot(environmentsValuesOptions),
     TaskModule,
     UserModule,
     AuthModule,
@@ -21,7 +18,5 @@ import { LabelModule } from './label/label.module';
     CategoryModule,
     LabelModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

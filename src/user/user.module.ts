@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { DatabaseModule } from 'src/configurations/databases/mongoDB/mongo.module';
 import { userProviders } from './user.provider';
+import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 /**
  * Module responsible for managing user-related functionality.
@@ -13,6 +14,6 @@ import { userProviders } from './user.provider';
 @Module({
   imports: [DatabaseModule], // Importing DatabaseModule for establishing database connectivity.
   controllers: [UserController], // Exposing UserController to handle HTTP requests related to users.
-  providers: [UserService, ...userProviders], // Providing UserService and userProviders for dependency injection.
+  providers: [GetEnvValuesService, UserService, ...userProviders], // Providing UserService and userProviders for dependency injection.
 })
 export class UserModule {}

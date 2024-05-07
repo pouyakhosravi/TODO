@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { LocalStrategy } from './straregies/local.auth';
+import { LocalStrategy } from './strategies/local.auth';
 import { UserService } from 'src/user/user.service';
 import { userProviders } from 'src/user/user.provider';
 import { DatabaseModule } from 'src/configurations/databases/mongoDB/mongo.module';
@@ -13,6 +13,7 @@ import { TaskService } from 'src/task/task.service';
 import { TaskController } from 'src/task/task.controller';
 import { TaskModule } from 'src/task/task.module';
 import { taskProviders } from 'src/task/task.provider';
+import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { taskProviders } from 'src/task/task.provider';
     }),
   ],
   providers: [
+    GetEnvValuesService,
     AuthService,
     UserService,
     TaskService,
