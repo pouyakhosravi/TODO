@@ -1,12 +1,10 @@
 import { Logger } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import * as mongoose from 'mongoose';
 import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
-export const mongoDBProviders = [
+export const MongooseConfigProvider = [
   {
-    imports: [ConfigModule],
-    provide: 'MONGO_DB_CONNECTION',
+    provide: 'MONGOOSE_CONFIG_PROVIDER',
     useFactory: async (
       envValues: GetEnvValuesService,
     ): Promise<typeof mongoose> => {
@@ -24,7 +22,9 @@ export const mongoDBProviders = [
           ? `mongodb://${mongoDBData.host}/${mongoDBData.dataBaseName}`
           : `mongodb://${mongoDBData.userName}:${mongoDBData.password}@${mongoDBData.host}:${mongoDBData.port}/${mongoDBData.dataBaseName}`,
       );
-      Logger.log(`App connected to mongodb`);
+      Logger.log(
+        `App connected to mongoDB form mongoose to ${mongoDBData.dataBaseName} DB`,
+      );
       return connection;
     },
     inject: [GetEnvValuesService],

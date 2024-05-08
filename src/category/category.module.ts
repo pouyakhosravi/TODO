@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryController } from './category.controller';
 import { categoryProviders } from './category.provider';
-import { DatabaseModule } from 'src/configurations/databases/mongoDB/mongo.module';
+import { MongooseConfigModule } from 'src/configurations/databases/mongoose/mongooseConfig.module';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [MongooseConfigModule],
   controllers: [CategoryController],
   providers: [CategoryService, ...categoryProviders],
 })

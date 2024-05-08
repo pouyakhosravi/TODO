@@ -5,6 +5,6 @@ export const labelProviders = [
   {
     provide: 'Label_MODEL',
     useFactory: (mongoose: Mongoose) => mongoose.model('Label', LabelSchema),
-    inject: ['MONGO_DB_CONNECTION'],
+    inject: ['MONGOOSE_CONFIG_PROVIDER'],
   },
 ];

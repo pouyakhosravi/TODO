@@ -22,6 +22,6 @@ export const taskProviders = [
     /**
      * Dependencies to inject into the factory function.
      */
-    inject: ['MONGO_DB_CONNECTION'],
+    inject: ['MONGOOSE_CONFIG_PROVIDER'],
   },
 ];

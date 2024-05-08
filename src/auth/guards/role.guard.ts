@@ -11,7 +11,7 @@ import { ROLES_KEY } from '../decorators/role.decorator';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { UserService } from 'src/user/user.service';
-import { User } from 'src/user/interfaces/user.interface';
+import { UserModelInterface } from 'src/user/interfaces/user.interface';
 import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 @Injectable()
@@ -48,9 +48,8 @@ export class RolesGuard implements CanActivate {
     }
 
     const { user } = context.switchToHttp().getRequest();
-    const userObject: User | null = await this.userService.findByEmail(
-      user.email,
-    );
+    const userObject: UserModelInterface | null =
+      await this.userService.findByEmail(user.email);
     if (!userObject) {
       throw new NotFoundException(`User not found`);
     }

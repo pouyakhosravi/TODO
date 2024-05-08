@@ -8,7 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { LoginDTO } from './dto/login.dto';
-import { User } from 'src/user/interfaces/user.interface';
+import { UserModelInterface } from 'src/user/interfaces/user.interface';
 import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   async login(loginDTO: LoginDTO) {
-    const user: User | null = await this.usersService.findByEmail(
+    const user: UserModelInterface | null = await this.usersService.findByEmail(
       loginDTO.email,
     );
     if (!user) {
@@ -43,7 +43,6 @@ export class AuthService {
     }
 
     const salt = this.config.salt;
-    console.log(salt);
 
     if (!salt) {
       throw new InternalServerErrorException();

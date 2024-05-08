@@ -27,6 +27,6 @@ export const listProviders = [
     /**
      * Specifies the dependencies that need to be injected into the factory function.
      */
-    inject: ['MONGO_DB_CONNECTION'], // Injects the MongoDB connection provided by the MongooseModule
+    inject: ['MONGOOSE_CONFIG_PROVIDER'], // Injects the MongoDB connection provided by the MongooseModule
   },
 ];

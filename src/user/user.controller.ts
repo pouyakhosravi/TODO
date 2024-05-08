@@ -13,7 +13,7 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './interfaces/user.interface';
+import { UserModelInterface } from './interfaces/user.interface';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RolesGuard } from 'src/auth/guards/role.guard';
 import { Roles } from 'src/auth/decorators/role.decorator';
@@ -36,7 +36,7 @@ export class UserController {
   /**
    * Endpoint to create a new user.
    * @param createUserDto DTO containing user information for creation.
-   * @returns {Promise<User>} Promise resolving to the created user.
+   * @returns {Promise<UserModelInterface>} Promise resolving to the created user.
    */
   @Post('/signup')
   @ApiOperation({
@@ -44,20 +44,20 @@ export class UserController {
     description: 'This is Signup rout for create a new user and register',
   })
   @UsePipes(ValidationPipe)
-  create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
   /**
    * Endpoint to retrieve all users.
    * Requires authentication and specific roles.
-   * @returns {Promise<Array<User>>} Promise resolving to an array of users.
+   * @returns {Promise<Array<UserModelInterface>>} Promise resolving to an array of users.
    */
   @Get()
   @ApiBearerAuth()
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.USER, Role.ADMIN, Role.SUPER_ADMIN)
-  findAll(): Promise<Array<User>> {
+  findAll(): Promise<Array<UserModelInterface>> {
     return this.userService.findAll();
   }
 
@@ -65,13 +65,13 @@ export class UserController {
    * Endpoint to retrieve a user by ID.
    * Requires authentication and specific roles.
    * @param id ID of the user to retrieve.
-   * @returns {Promise<User | null>} Promise resolving to the found user or null if not found.
+   * @returns {Promise<UserModelInterface | null>} Promise resolving to the found user or null if not found.
    */
   @Get(':id')
   @ApiBearerAuth()
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.USER)
-  findOne(@Param('id') id: string): Promise<User | null> {
+  findOne(@Param('id') id: string): Promise<UserModelInterface | null> {
     return this.userService.findById(id);
   }
 

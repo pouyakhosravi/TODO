@@ -6,6 +6,6 @@ export const categoryProviders = [
     provide: 'CATEGORY_MODEL',
     useFactory: (mongoose: Mongoose) =>
       mongoose.model('Category', CategorySchema),
-    inject: ['MONGO_DB_CONNECTION'],
+    inject: ['MONGOOSE_CONFIG_PROVIDER'],
   },
 ];
