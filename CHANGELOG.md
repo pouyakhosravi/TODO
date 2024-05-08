@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.12](https://github.com/pouyakhosravi/TODO/compare/v0.5.11...v0.5.12) (2024-05-08)
+
+
+### Features
+
+* Add typeORM ([274e7dd](https://github.com/pouyakhosravi/TODO/commit/274e7ddae86ff1d05492f33d23b65263a65984af))
+
 ### [0.5.11](https://github.com/pouyakhosravi/TODO/compare/v0.5.10...v0.5.11) (2024-05-07)
 
 ### [0.5.10](https://github.com/pouyakhosravi/TODO/compare/v0.4.8...v0.5.10) (2024-05-02)
