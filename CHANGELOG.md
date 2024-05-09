@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.13](https://github.com/pouyakhosravi/TODO/compare/v0.5.12...v0.5.13) (2024-05-09)
+
+
+### Features
+
+* Complete category module ([b9b5679](https://github.com/pouyakhosravi/TODO/commit/b9b5679323ee0e5104a66b49df54988e3ef5f0e0))
+
 ### [0.5.12](https://github.com/pouyakhosravi/TODO/compare/v0.5.11...v0.5.12) (2024-05-08)
 
 
