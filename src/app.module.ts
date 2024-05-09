@@ -13,10 +13,10 @@ import { LabelModule } from './label/label.module';
     ConfigModule.forRoot(environmentsValuesOptions),
     AuthModule,
     UserModule,
-    // TaskModule,
-    // ListModule,
-    // CategoryModule,
-    // LabelModule,
+    TaskModule,
+    CategoryModule,
+    ListModule,
+    LabelModule,
   ],
 })
 export class AppModule {}

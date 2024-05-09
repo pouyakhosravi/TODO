@@ -15,13 +15,20 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UserService {
   constructor(
+    // read environments
     private readonly config: GetEnvValuesService,
+
+    // inject mongoose user repository
     @Inject('MONGOOSE_USER_MODEL_REPOSITORY_PROVIDER')
     private readonly mongooseUserRepository: Model<UserModelInterface>,
+
+    // inject type orm postgres user repository
     @Inject('TYPE_ORM_POSTGRE_USER_ENTITY_REPOSITORY_PROVIDER')
     private readonly typeOrmPostgreUserRepository: Repository<User>,
-    // @Inject('TYPE_ORM_MONGO_USER_ENTITY_REPOSITORY_PROVIDER')
-    // private readonly typeOrmMongoUserRepository: Repository<User>,
+
+    // inject type orm mongo user repository
+    @Inject('TYPE_ORM_MONGO_USER_ENTITY_REPOSITORY_PROVIDER')
+    private readonly typeOrmMongoUserRepository: Repository<User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -33,10 +40,7 @@ export class UserService {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     createUserDto.password = hashedPassword;
 
-    // const newUser = await this.mongooseUserRepository.create(createUserDto);
-    const newUser =
-      await this.typeOrmPostgreUserRepository.create(createUserDto);
-
+    const newUser = await this.mongooseUserRepository.create(createUserDto);
     if (!newUser) {
       throw new InternalServerErrorException('Failed to create user.');
     }

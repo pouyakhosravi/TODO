@@ -11,6 +11,7 @@ import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Category } from './interfaces/category.interface';
 
 @ApiTags('Category Routes')
 @Controller('category')
@@ -18,17 +19,17 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
+  create(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
     return this.categoryService.create(createCategoryDto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Array<Category>> {
     return this.categoryService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string): Promise<Category | null> {
     return this.categoryService.findOne(+id);
   }
 
@@ -36,12 +37,12 @@ export class CategoryController {
   update(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
-  ) {
+  ): Promise<Category | null> {
     return this.categoryService.update(+id, updateCategoryDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.categoryService.remove(+id);
+  delete(@Param('id') id: string): Promise<boolean> {
+    return this.categoryService.delete(+id);
   }
 }

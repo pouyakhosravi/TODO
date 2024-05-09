@@ -8,12 +8,8 @@ import { LocalStrategy } from './strategies/local.auth';
 import { UserService } from 'src/user/user.service';
 import { mongooseUserModelRepositoryProvider } from 'src/user/providers/mongooseUserModelRepository.provider';
 import { UserController } from 'src/user/user.controller';
-import { TaskService } from 'src/task/task.service';
-import { TaskController } from 'src/task/task.controller';
-import { TaskModule } from 'src/task/task.module';
-import { taskProviders } from 'src/task/task.provider';
 import { GetEnvValuesService } from 'src/configurations/getEnvValues.service';
-// import { TypeOrmMongoConfigModule } from 'src/configurations/databases/typeOrm/mongo/typeOrmMongoConfig.module';
+import { TypeOrmMongoConfigModule } from 'src/configurations/databases/typeOrm/mongo/typeOrmMongoConfig.module';
 import { MongooseConfigModule } from 'src/configurations/databases/mongoose/mongooseConfig.module';
 import { TypeOrmMongoUserEntityRepositoryProvider } from 'src/user/providers/typeOrmMongoUserEntityRepository.provider';
 import { TypeOrmPostgreConfigModule } from 'src/configurations/databases/typeOrm/postgre/typeOrmPostgreConfig.module';
@@ -23,7 +19,7 @@ import { TypeOrmPostgreUserEntityRepositoryProvider } from 'src/user/providers/t
   imports: [
     MongooseConfigModule,
     TypeOrmPostgreConfigModule,
-    // TypeOrmMongoConfigModule,
+    TypeOrmMongoConfigModule,
     UserModule,
     PassportModule,
     JwtModule.register({
@@ -39,7 +35,7 @@ import { TypeOrmPostgreUserEntityRepositoryProvider } from 'src/user/providers/t
     LocalStrategy,
     ...mongooseUserModelRepositoryProvider,
     ...TypeOrmPostgreUserEntityRepositoryProvider,
-    // ...TypeOrmMongoUserEntityProvider,
+    ...TypeOrmMongoUserEntityRepositoryProvider,
   ],
   controllers: [AuthController, UserController],
 })

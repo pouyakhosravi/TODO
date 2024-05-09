@@ -11,9 +11,3 @@ export const CategorySchema = new mongoose.Schema(
     autoIndex: true,
   },
 );
-
-export interface Category extends mongoose.Document {
-  name: string;
-  user: mongoose.Schema.Types.ObjectId;
-  tasks: [mongoose.Schema.Types.ObjectId];
-}

@@ -18,7 +18,8 @@ export class ListService {
     /**
      * Injects the List model provided by NestJS.
      */
-    @Inject('LIST_MODEL') private readonly listModel: Model<List>,
+    @Inject('MONGOOSE_LIST_MODEL_REPOSITORY_PROVIDER')
+    private readonly listModel: Model<List>,
   ) {}
 
   /**

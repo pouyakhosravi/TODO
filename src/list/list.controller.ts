@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ListService } from './list.service';
 import { CreateListDto } from './dto/create-list.dto';
@@ -18,6 +19,8 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 import { List } from './interfaces/list.interface';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { RolesGuard } from 'src/auth/guards/role.guard';
 
 /**
  * Controller handling HTTP requests related to lists.
@@ -46,6 +49,7 @@ export class ListController {
    */
   @ApiOperation({ summary: 'Get all lists' })
   @Get()
+  @UseGuards(AuthGuard, RolesGuard)
   async findAll(): Promise<List[]> {
     return this.listService.findAll();
   }

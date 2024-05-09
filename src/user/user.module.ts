@@ -8,6 +8,7 @@ import { TypeOrmPostgreConfigModule } from 'src/configurations/databases/typeOrm
 // import { TypeOrmMongoUserEntityProvider } from './providers/typeOrmMongoUserEntity.provider';
 import { TypeOrmMongoConfigModule } from 'src/configurations/databases/typeOrm/mongo/typeOrmMongoConfig.module';
 import { TypeOrmPostgreUserEntityRepositoryProvider } from './providers/typeOrmPostgreUserEntityRepoository.provider';
+import { TypeOrmMongoUserEntityRepositoryProvider } from './providers/typeOrmMongoUserEntityRepository.provider';
 // import { TypeOrmPostgreUserEntityProvider } from './providers/typeOrmPostgreUserEntity.provider';
 
 @Module({
@@ -22,6 +23,7 @@ import { TypeOrmPostgreUserEntityRepositoryProvider } from './providers/typeOrmP
     UserService,
     ...mongooseUserModelRepositoryProvider,
     ...TypeOrmPostgreUserEntityRepositoryProvider,
+    ...TypeOrmMongoUserEntityRepositoryProvider,
   ],
 })
 export class UserModule {}
